@@ -55,6 +55,7 @@ Benefit: It makes the project usable not only for educational purposes but also 
 
 
 Multi-Functional Console Application [TR]
+
 Bu proje, C# dilinde yazılmış ve temel programlama becerilerini geliştirmek amacıyla oluşturulmuş çok işlevli bir konsol uygulamasıdır. Program, üç farklı işlevi tek bir yerde toplar:
 
 Rastgele Sayı Bulma Oyunu: 1 ile 100 arasında rastgele bir sayı tahmin etmeye çalışın.
