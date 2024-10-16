@@ -1,29 +1,44 @@
-﻿using System;
+using System;
 
 class Program
 {
     static void Main()
     {
-        Console.WriteLine("Hangi programı çalıştırmak istersiniz?");
-        Console.WriteLine("1 - Rastgele Sayı Bulma Oyunu");
-        Console.WriteLine("2 - Hesap Makinesi");
-        Console.WriteLine("3 - Ortalama Hesaplama");
-        int choice = Convert.ToInt32(Console.ReadLine());
-
-        switch (choice)
+        bool programDevam = true;
+        while (programDevam)
         {
-            case 1:
-                RastgeleSayiBulmaOyunu();
-                break;
-            case 2:
-                HesapMakinesi();
-                break;
-            case 3:
-                OrtalamaHesaplama();
-                break;
-            default:
-                Console.WriteLine("Geçersiz seçim.");
-                break;
+            Console.WriteLine("Hangi programı çalıştırmak istersiniz?");
+            Console.WriteLine("1 - Rastgele Sayı Bulma Oyunu");
+            Console.WriteLine("2 - Hesap Makinesi");
+            Console.WriteLine("3 - Ortalama Hesaplama");
+            Console.WriteLine("0 - Programı Kapat");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        RastgeleSayiBulmaOyunu();
+                        break;
+                    case 2:
+                        HesapMakinesi();
+                        break;
+                    case 3:
+                        OrtalamaHesaplama();
+                        break;
+                    case 0:
+                        Console.WriteLine("Programdan çıkılıyor...");
+                        programDevam = false;
+                        break;
+                    default:
+                        Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyin.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Geçersiz giriş. Lütfen bir sayı girin.");
+            }
         }
     }
 
@@ -39,111 +54,139 @@ class Program
         while (attempts > 0)
         {
             Console.WriteLine("Tahmininizi girin:");
-            guess = Convert.ToInt32(Console.ReadLine());
 
-            if (guess == randomNumber)
+            if (int.TryParse(Console.ReadLine(), out guess))
             {
-                Console.WriteLine("Tebrikler, doğru tahmin!");
-                break;
-            }
-            else if (guess < randomNumber)
-            {
-                Console.WriteLine("Daha yüksek bir sayı girin.");
+                if (guess == randomNumber)
+                {
+                    Console.WriteLine("Tebrikler, doğru tahmin!");
+                    break;
+                }
+                else if (guess < randomNumber)
+                {
+                    Console.WriteLine("Daha yüksek bir sayı girin.");
+                }
+                else
+                {
+                    Console.WriteLine("Daha düşük bir sayı girin.");
+                }
+
+                attempts--;
+
+                if (attempts == 0)
+                {
+                    Console.WriteLine($"Tahmin hakkınız doldu. Doğru sayı: {randomNumber}");
+                    Console.WriteLine("Oyun bitti.");
+                }
+                else
+                {
+                    Console.WriteLine($"{attempts} tahmin hakkınız kaldı.");
+                }
             }
             else
             {
-                Console.WriteLine("Daha düşük bir sayı girin.");
-            }
-
-            attempts--;
-
-            if (attempts == 0)
-            {
-                Console.WriteLine($"Tahmin hakkınız doldu. Doğru sayı: {randomNumber}");
-            }
-            else
-            {
-                Console.WriteLine($"{attempts} tahmin hakkınız kaldı.");
+                Console.WriteLine("Geçersiz giriş, lütfen bir sayı girin.");
             }
         }
     }
 
     static void HesapMakinesi()
     {
-        Console.WriteLine("İlk sayıyı girin:");
-        int num1 = Convert.ToInt32(Console.ReadLine());
+        int num1 = SayiGirisi("İlk");
+        int num2 = SayiGirisi("İkinci");
 
-        Console.WriteLine("İkinci sayıyı girin:");
-        int num2 = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine("Yapmak istediğiniz işlemi seçin (+, -, *, /):");
-        char operation = Convert.ToChar(Console.ReadLine());
-
-        switch (operation)
+        bool islemGecerli = false;
+        while (!islemGecerli)
         {
-            case '+':
-                Console.WriteLine($"Sonuç: {num1 + num2}");
-                break;
-            case '-':
-                Console.WriteLine($"Sonuç: {num1 - num2}");
-                break;
-            case '*':
-                Console.WriteLine($"Sonuç: {num1 * num2}");
-                break;
-            case '/':
-                if (num2 != 0)
-                {
-                    Console.WriteLine($"Sonuç: {num1 / num2}");
-                }
-                else
-                {
-                    Console.WriteLine("Sıfıra bölme hatası!");
-                }
-                break;
-            default:
-                Console.WriteLine("Geçersiz işlem seçimi.");
-                break;
+            Console.WriteLine("Yapmak istediğiniz işlemi seçin (+, -, *, /):");
+            char operation = Console.ReadLine()[0];  // İlk karakteri alır.
+
+            switch (operation)
+            {
+                case '+':
+                    Console.WriteLine($"Sonuç: {num1 + num2}");
+                    islemGecerli = true;
+                    break;
+                case '-':
+                    Console.WriteLine($"Sonuç: {num1 - num2}");
+                    islemGecerli = true;
+                    break;
+                case '*':
+                    Console.WriteLine($"Sonuç: {num1 * num2}");
+                    islemGecerli = true;
+                    break;
+                case '/':
+                    if (num2 != 0)
+                    {
+                        Console.WriteLine($"Sonuç: {num1 / num2}");
+                        islemGecerli = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sıfıra bölme hatası! Lütfen tekrar deneyin.");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Geçersiz işlem seçimi. Lütfen +, -, *, / işlemlerinden birini girin.");
+                    break;
+            }
+        }
+    }
+
+    static int SayiGirisi(string sira)
+    {
+        int sayi;
+        while (true)
+        {
+            Console.WriteLine($"{sira} sayıyı girin:");
+            if (int.TryParse(Console.ReadLine(), out sayi))
+            {
+                return sayi;  // Geçerli bir sayı girildiğinde döngüden çık.
+            }
+            else
+            {
+                Console.WriteLine("Geçersiz giriş, lütfen geçerli bir sayı girin.");
+            }
         }
     }
 
     static void OrtalamaHesaplama()
     {
-        Console.WriteLine("Birinci ders notunu girin (0-100):");
-        double not1 = Convert.ToDouble(Console.ReadLine());
+        double not1 = NotGirisi("Birinci");
+        double not2 = NotGirisi("İkinci");
+        double not3 = NotGirisi("Üçüncü");
 
-        Console.WriteLine("İkinci ders notunu girin (0-100):");
-        double not2 = Convert.ToDouble(Console.ReadLine());
+        double ortalama = (not1 + not2 + not3) / 3;
+        Console.WriteLine($"Ortalamanız: {ortalama}");
 
-        Console.WriteLine("Üçüncü ders notunu girin (0-100):");
-        double not3 = Convert.ToDouble(Console.ReadLine());
-
-        if (not1 >= 0 && not1 <= 100 && not2 >= 0 && not2 <= 100 && not3 >= 0 && not3 <= 100)
-        {
-            double ortalama = (not1 + not2 + not3) / 3;
-            Console.WriteLine($"Ortalamanız: {ortalama}");
-
-            if (ortalama >= 90)
-                Console.WriteLine("Harf notu: AA");
-            else if (ortalama >= 85)
-                Console.WriteLine("Harf notu: BA");
-            else if (ortalama >= 80)
-                Console.WriteLine("Harf notu: BB");
-            else if (ortalama >= 75)
-                Console.WriteLine("Harf notu: CB");
-            else if (ortalama >= 70)
-                Console.WriteLine("Harf notu: CC");
-            else if (ortalama >= 65)
-                Console.WriteLine("Harf notu: DC");
-            else if (ortalama >= 60)
-                Console.WriteLine("Harf notu: DD");
-            else if (ortalama >= 55)
-                Console.WriteLine("Harf notu: FD");
-            else
-                Console.WriteLine("Harf notu: FF");
-        }
+        if (ortalama >= 90)
+            Console.WriteLine("Harf notu: AA");
+        else if (ortalama >= 85)
+            Console.WriteLine("Harf notu: BA");
+        else if (ortalama >= 80)
+            Console.WriteLine("Harf notu: BB");
+        else if (ortalama >= 75)
+            Console.WriteLine("Harf notu: CB");
+        else if (ortalama >= 70)
+            Console.WriteLine("Harf notu: CC");
+        else if (ortalama >= 65)
+            Console.WriteLine("Harf notu: DC");
+        else if (ortalama >= 60)
+            Console.WriteLine("Harf notu: DD");
+        else if (ortalama >= 55)
+            Console.WriteLine("Harf notu: FD");
         else
+            Console.WriteLine("Harf notu: FF");
+    }
+
+    static double NotGirisi(string ders)
+    {
+        double notDegeri;
+        do
         {
-            Console.WriteLine("Geçersiz not girdiniz. Lütfen 0 ile 100 arasında bir not girin.");
-        }
+            Console.WriteLine($"{ders} ders notunu girin (0-100):");
+        } while (!double.TryParse(Console.ReadLine(), out notDegeri) || notDegeri < 0 || notDegeri > 100);
+
+        return notDegeri;
     }
 }
