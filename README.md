@@ -53,6 +53,20 @@ Benefit: Increases the excitement of the game and adds an element of challenge t
 Development: The number of mini-games can be increased, such as the random number guessing game, or the existing game can be made more complex.
 Benefit: It makes the project usable not only for educational purposes but also for entertainment purposes.
 
+New Features and Improvements
++Improved Input Validation for Calculator:
++Now, if the user enters an invalid character or symbol instead of numbers or operations, the program will prompt the user to re-enter the input without restarting the program.
+Seamless Error Handling for Invalid Number Inputs:
++The program now handles incorrect number inputs (such as non-numeric characters) by prompting the user to input a valid number again instead of terminating or going back to the main menu.
+Enhanced Operator Input Handling:
++If an invalid operation (such as a character other than +, -, *, /) is entered, the user is asked to re-enter the correct operator without restarting the program.
+Re-attempt Mechanism for Invalid Scores in Average Calculation:
++When calculating the average, if a non-numeric or out-of-range score is entered, the program will request the user to enter a valid score without interrupting the process for other inputs.
+Structured and User-Friendly Output:
++The messages prompting the user for input and error messages are now more descriptive and user-friendly, making the overall experience smoother.
+Exit Option on Main Menu:
++Users can now easily exit the program by selecting the "0" option on the main menu, ensuring a clear and smooth termination process.
+
 
 Multi-Functional Console Application [TR]
 
@@ -109,3 +123,16 @@ Faydası: Oyunun heyecanını artırır ve oyunculara bir zorluk unsuru ekler.
 9. Daha Karmaşık Oyunlar
 Geliştirme: Rastgele sayı tahmin oyunu gibi mini oyunların sayısı artırılabilir, ya da mevcut oyun daha karmaşık bir hale getirilebilir.
 Faydası: Projeyi sadece eğitim amaçlı değil, aynı zamanda eğlence amaçlı da kullanılabilir hale getirir.
+
+Yeni Özellikler ve İyileştirmeler
++Hesap Makinesi için Gelişmiş Giriş Doğrulaması:
++Artık kullanıcı sayılar veya işlemler yerine geçersiz bir karakter veya sembol girerse, program kullanıcıdan programı yeniden başlatmadan girişi yeniden girmesini isteyecektir.
+Geçersiz Sayı Girişleri İçin Sorunsuz Hata İşleme:
++Program artık hatalı sayı girişlerini (sayısal olmayan karakterler gibi) sonlandırmak veya ana menüye geri dönmek yerine kullanıcıdan geçerli bir sayıyı yeniden girmesini isteyerek işliyor.
+Geliştirilmiş Operatör Girişi İşleme:
++Geçersiz bir işlem (+, -, *, / dışındaki bir karakter gibi) girilirse, kullanıcıdan programı yeniden başlatmadan doğru operatörü yeniden girmesi istenir.
+Ortalama Hesaplamasında Geçersiz Puanlar İçin Yeniden Deneme Mekanizması:
++Ortalama hesaplanırken, sayısal olmayan veya aralık dışı bir puan girilirse, program kullanıcıdan diğer girdiler için işlemi kesintiye uğratmadan geçerli bir puan girmesini isteyecektir. Yapılandırılmış ve Kullanıcı Dostu Çıktı:
++Kullanıcıdan girdi ve hata mesajları isteyen mesajlar artık daha açıklayıcı ve kullanıcı dostu, bu da genel deneyimi daha akıcı hale getiriyor.
+Ana Menüde Çıkış Seçeneği:
++Kullanıcılar artık ana menüde "0" seçeneğini seçerek programdan kolayca çıkabilir, bu da net ve akıcı bir sonlandırma süreci sağlar.
